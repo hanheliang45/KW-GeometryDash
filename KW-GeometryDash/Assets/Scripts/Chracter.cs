@@ -25,13 +25,13 @@ public class Chracter : MonoBehaviour
         //KeyCodes//KeyCodes//KeyCodes
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log(OnGround);
             if (OnGround)
             {
                 Debug.Log("jumped");
                 physicsBody.velocity = Vector3.up * jumpHeight;
                 speed = speed / 3;
                 OnGround = false;
+                jumped = true;
             }
         }
 
@@ -41,7 +41,7 @@ public class Chracter : MonoBehaviour
     private void LateUpdate()
     {
         Camera.main.transform.position = this.transform.position + Vector3.back*20;
-        this.transform.position += speed * Time.deltaTime*new Vector3(1, 0, 0);
+        this.transform.position += (speed/140)*new Vector3(1, 0, 0);
     }
 
     public void TouchGround()
@@ -57,6 +57,11 @@ public class Chracter : MonoBehaviour
     public void Die()
     {
         Destroy(this.gameObject);
+    }
+
+    public void LeaveJumpDot()
+    {
+        
     }
 
 

@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpDot : MonoBehaviour
+public class Top : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -22,5 +21,10 @@ public class JumpDot : MonoBehaviour
         Debug.Log("Canjump");
         collision.gameObject.GetComponent<Chracter>().TouchGround();    
     }
-
+    
+    
+    private void OnTriggerExit(Collider other)
+    {
+        other.gameObject.GetComponent<Chracter>().LeaveJumpDot();
+    }
 }
