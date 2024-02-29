@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -15,7 +16,6 @@ public class Chracter : MonoBehaviour
     void Start()
     {
         physicsBody = GetComponent<Rigidbody2D>();
-        physicsBody.velocity = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -27,21 +27,19 @@ public class Chracter : MonoBehaviour
         {
             if (OnGround)
             {
-                Debug.Log("jumped");
-                physicsBody.velocity = Vector3.up * jumpHeight;
-                speed = speed / 3;
+                physicsBody.velocity = new Vector2(physicsBody.velocity.x,jumpHeight);
                 OnGround = false;
                 jumped = true;
             }
         }
 
-
+        float actualSpeed = OnGround ? speed : speed / 3;
+        physicsBody.velocity = Vector2.right * actualSpeed + new Vector2(0, physicsBody.velocity.y);
     }
 
     private void LateUpdate()
     {
         Camera.main.transform.position = this.transform.position + Vector3.back*20;
-        this.transform.position += (speed/140)*new Vector3(1, 0, 0);
     }
 
     public void TouchGround()
@@ -49,7 +47,6 @@ public class Chracter : MonoBehaviour
         OnGround = true;
         if (jumped)
         {
-            speed *= 3;
             jumped = false;
         }
     }
@@ -61,7 +58,7 @@ public class Chracter : MonoBehaviour
 
     public void LeaveJumpDot()
     {
-        
+        OnGround = false;
     }
 
 
