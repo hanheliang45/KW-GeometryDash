@@ -6,13 +6,20 @@ using UnityEngine;
 
 public class Chracter : MonoBehaviour
 {
+    public static Chracter instance;
     [SerializeField] float speed;
     [SerializeField] float jumpHeight;
     [SerializeField] private float fallSpeed;
     Rigidbody2D physicsBody;
     private bool OnGround;
     private bool jumped;
-    // Start is called before the first frame update
+    private float actualSpeed;
+    
+    private void Awake()
+    {
+        instance = this;
+    }
+
     void Start()
     {
         physicsBody = GetComponent<Rigidbody2D>();
@@ -32,8 +39,7 @@ public class Chracter : MonoBehaviour
                 jumped = true;
             }
         }
-
-        float actualSpeed = OnGround ? speed : speed / 3;
+        actualSpeed = OnGround ? speed : speed / 3;
         physicsBody.velocity = Vector2.right * actualSpeed + new Vector2(0, physicsBody.velocity.y);
     }
 
@@ -59,6 +65,11 @@ public class Chracter : MonoBehaviour
     public void LeaveJumpDot()
     {
         OnGround = false;
+    }
+
+    public Transform GetTransform()
+    {
+        return transform;
     }
 
 
