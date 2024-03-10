@@ -45,7 +45,7 @@ public class Chracter : MonoBehaviour
 
     private void LateUpdate()
     {
-        Camera.main.transform.position = this.transform.position + Vector3.back*20;
+    Camera.main.transform.position = this.transform.position + Vector3.back * 20 + Vector3.up * 4 + Vector3.left * 2;
     }
 
     public void TouchGround()

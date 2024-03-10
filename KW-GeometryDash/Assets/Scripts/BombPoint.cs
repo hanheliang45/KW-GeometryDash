@@ -23,6 +23,7 @@ public class BombPoint : MonoBehaviour
         {
             return;    
         }
-        Monster.instance.Fire();
+        Monster.instance.Fire_Anim();
     }
+
 } 
