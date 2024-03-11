@@ -47,6 +47,7 @@ public class Monster : MonoBehaviour
     {
         stopWatch += Time.deltaTime;
         Debug.Log("Fired");
+        animator.SetBool("IsThrowing", false);
         animator.SetBool("IsWalking", true);
     }
 

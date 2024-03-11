@@ -72,5 +72,9 @@ public class Chracter : MonoBehaviour
         return transform;
     }
 
-
+    public Vector3 GetPosition()
+    {
+        Vector3 character_p = this.transform.position;
+        return character_p;
+    }
 }
