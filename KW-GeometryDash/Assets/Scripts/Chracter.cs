@@ -13,7 +13,9 @@ public class Chracter : MonoBehaviour
     Rigidbody2D physicsBody;
     private bool OnGround;
     private bool jumped;
+    private bool controlled;
     private float actualSpeed;
+    
     
     private void Awake()
     {
@@ -22,6 +24,7 @@ public class Chracter : MonoBehaviour
 
     void Start()
     {
+        controlled = false;
         physicsBody = GetComponent<Rigidbody2D>();
     }
 
@@ -29,7 +32,7 @@ public class Chracter : MonoBehaviour
     void Update()
     {
         
-        //KeyCodes//KeyCodes//KeyCodes
+        //Moving //Moving //Moving //Moving
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (OnGround)
@@ -41,11 +44,28 @@ public class Chracter : MonoBehaviour
         }
         actualSpeed = OnGround ? speed : speed / 3;
         physicsBody.velocity = Vector2.right * actualSpeed + new Vector2(0, physicsBody.velocity.y);
+        
+        //Controlled //Controlled //Controlled //Controlled
+                if (!controlled)
+                {
+                    return;    
+                }
+        
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    physicsBody.velocity += Vector2.left * speed;    
+                    return;
+                }
+                if (Input.GetKeyDown(KeyCode.D))
+                {
+                    physicsBody.velocity += Vector2.right * speed;
+                    return;
+                }
     }
 
     private void LateUpdate()
     {
-    Camera.main.transform.position = this.transform.position + Vector3.back * 20 + Vector3.up * 4 + Vector3.left * 2;
+        Camera.main.transform.position = this.transform.position + Vector3.back * 20 + Vector3.up * 4 + Vector3.left * 2;
     }
 
     public void TouchGround()
@@ -76,5 +96,16 @@ public class Chracter : MonoBehaviour
     {
         Vector3 character_p = this.transform.position;
         return character_p;
+    }
+
+    public void Controlled()
+    {
+        if (controlled)
+        {
+            controlled = false;
+            return;
+        }
+
+        controlled = true;
     }
 }

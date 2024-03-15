@@ -27,16 +27,13 @@ public class FireBall : MonoBehaviour
 
         if (targeted)
         {
-            Debug.Log("carefull!");
             p_My.x += Time.deltaTime * speed;
         }
         else
         {
-
             if (p_My.y - Chracter.instance.GetTransform().position.y > -0.1 &&
                 p_My.y - Chracter.instance.GetTransform().position.y < 0.1)
             {
-                Debug.Log("carefull!");
                 targeted = true;
             }
 
