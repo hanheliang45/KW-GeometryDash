@@ -31,8 +31,34 @@ public class Chracter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Controlled //Controlled //Controlled //Controlled
+        if (controlled)
+        {
+            
+            if (Input.GetKey(KeyCode.A))
+            {
+                physicsBody.velocity += Vector2.left * (speed/20) ; 
+                Debug.Log("Moving");
+                return;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                physicsBody.velocity += Vector2.right * (speed/20) ;
+                Debug.Log("Moving");
+                return;
+            }
+            
+            if (OnGround && Input.GetKeyDown(KeyCode.Space))
+            {
+                physicsBody.velocity = new Vector2(physicsBody.velocity.x,jumpHeight);
+                OnGround = false;
+                jumped = true;
+            }
+            return;    
+        }
         
-        //Moving //Moving //Moving //Moving
+        
+        //Moving //Moving //Moving //Moving 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (OnGround)
@@ -45,22 +71,7 @@ public class Chracter : MonoBehaviour
         actualSpeed = OnGround ? speed : speed / 3;
         physicsBody.velocity = Vector2.right * actualSpeed + new Vector2(0, physicsBody.velocity.y);
         
-        //Controlled //Controlled //Controlled //Controlled
-                if (!controlled)
-                {
-                    return;    
-                }
         
-                if (Input.GetKeyDown(KeyCode.A))
-                {
-                    physicsBody.velocity += Vector2.left * speed;    
-                    return;
-                }
-                if (Input.GetKeyDown(KeyCode.D))
-                {
-                    physicsBody.velocity += Vector2.right * speed;
-                    return;
-                }
     }
 
     private void LateUpdate()
