@@ -72,6 +72,7 @@ public class Chracter : MonoBehaviour
         physicsBody.velocity = Vector2.right * actualSpeed + new Vector2(0, physicsBody.velocity.y);
         
         
+        //Random //Random //Random //Random //Random  
     }
 
     private void LateUpdate()
@@ -119,4 +120,13 @@ public class Chracter : MonoBehaviour
 
         controlled = true;
     }
+    
+    
+    
+    
+    
+   
+    
+    
+    
 }
