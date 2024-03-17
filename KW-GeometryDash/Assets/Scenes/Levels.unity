@@ -171,7 +171,7 @@ MonoBehaviour:
   panel: {fileID: 1077867317}
   board: {fileID: 623395373}
   buttonsPerRow: 8
-  panelsPerC: 0
+  panelsPerC: 6
 --- !u!1 &608352442
 GameObject:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320.16666, y: -215.33331}
+  m_AnchoredPosition: {x: 1990, y: -215.33331}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &774683042
@@ -494,7 +494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 320.16666, y: -185.33331}
+  m_AnchoredPosition: {x: 320.16666, y: 350}
   m_SizeDelta: {x: 1000, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1077867318

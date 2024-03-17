@@ -18,11 +18,12 @@ public class ButtonManager : MonoBehaviour
         buttonsMade_LF = 0;
         buttonsMade_T = 0;     
         DoneMakingButtons = false;
+       
     }
 
     void Update()
     {
-        Transform newPanel = null;
+        Transform newPanel = panel;
         if (DoneMakingButtons) 
         {
             return;
@@ -32,13 +33,15 @@ public class ButtonManager : MonoBehaviour
             buttonsMade_T = 0;
             newPanel = Instantiate(panel,board);
         }
-        Instantiate(button,buttonsMade_LF > buttonsPerRow ? newPanel : panel);    
+        Instantiate(button,newPanel);    
         buttonsMade_LF++;
         buttonsMade_T++;
         button.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = buttonsMade_LF.ToString();
         if (buttonsMade_LF == panelsPerC * buttonsPerRow)
         {
-            DoneMakingButtons = true;    
+            DoneMakingButtons = true;
+            button.gameObject.SetActive(false);
+            panel.gameObject.SetActive(false);
         }
     }
 }
