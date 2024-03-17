@@ -27,7 +27,7 @@ public class Chracter : MonoBehaviour
         controlled = false;
         physicsBody = GetComponent<Rigidbody2D>();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
