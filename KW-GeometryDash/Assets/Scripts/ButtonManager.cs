@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -15,13 +16,19 @@ public class ButtonManager : MonoBehaviour
     bool DoneMakingButtons;
     int buttonsMade_LF;
     int buttonsMade_T;
+    int levelNumber;
     Transform newPanel = null;
+    List<Transform> levelList;
     void Start()
     {
         buttonsMade_LF = 0;
         buttonsMade_T = 0;     
         DoneMakingButtons = false;
-       
+        levelList = new List<Transform>();
+        foreach (Transform t in levels)
+        {
+            levelList.Add(t);
+        }
     }
 
     void Update()
@@ -44,8 +51,13 @@ public class ButtonManager : MonoBehaviour
         }
 
         Transform newButton = Instantiate(button,newPanel);    
+        newButton.GetComponent<LevelButton>().SetTemplate(levelList[levelNumber]);
+        newButton.GetComponent<Button>().onClick.AddListener(() => {
+            newButton.GetComponent<LevelButton>().OnClick();
+        });
         buttonsMade_LF++;
         buttonsMade_T++;
+        levelNumber++;
         newButton.transform.Find("Text (TMP)").GetComponent<TextMeshProUGUI>().text = buttonsMade_LF.ToString();
         if (buttonsMade_LF == panelsPerC * buttonsPerRow)
         {
