@@ -68,7 +68,7 @@ public class Chracter : MonoBehaviour
                 jumped = true;
             }
         }
-        actualSpeed = OnGround ? speed : speed / 3;
+        actualSpeed = OnGround ? speed : speed / 1.5f;
         physicsBody.velocity = Vector2.right * actualSpeed + new Vector2(0, physicsBody.velocity.y);
         
         

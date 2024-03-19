@@ -19,7 +19,7 @@ public class LevelButton : MonoBehaviour
 
     public void OnClick()
     {
-        SceneManager.LoadScene(0);
+        //SceneManager.LoadScene(0);
         Debug.Log(template);
         Instantiate(template);
     }
