@@ -50,11 +50,15 @@ public class ButtonManager : MonoBehaviour
             newPanel = Instantiate(panel,board);
         }
 
-        Transform newButton = Instantiate(button,newPanel);    
-        newButton.GetComponent<LevelButton>().SetTemplate(levelList[levelNumber]);
-        newButton.GetComponent<Button>().onClick.AddListener(() => {
-            newButton.GetComponent<LevelButton>().OnClick();
-        });
+        Transform newButton = Instantiate(button,newPanel);
+        if (levelList.Count > buttonsMade_LF)
+        { 
+            newButton.GetComponent<LevelButton>().SetTemplate(levelList[levelNumber]);
+            newButton.GetComponent<Button>().onClick.AddListener(() => 
+            {
+                newButton.GetComponent<LevelButton>().OnClick();
+            });
+        }
         buttonsMade_LF++;
         buttonsMade_T++;
         levelNumber++;
