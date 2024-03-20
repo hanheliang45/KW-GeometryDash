@@ -8,7 +8,7 @@ public class StartPoint : MonoBehaviour
     void Start()
     {
         Instantiate(chracter, transform.position, Quaternion.identity);
-        chracter.SetActive(false);
+        chracter.SetActive(true);
     }
 
     // Update is called once per frame

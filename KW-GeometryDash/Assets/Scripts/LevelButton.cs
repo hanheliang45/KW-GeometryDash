@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class LevelButton : MonoBehaviour
 {
+    [SerializeField] Transform board;
     Transform template;
+    public static LevelButton instance;
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         
@@ -19,9 +26,10 @@ public class LevelButton : MonoBehaviour
 
     public void OnClick()
     {
-        //SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
         Debug.Log(template);
-        Instantiate(template);
+        board.gameObject.SetActive(false);
+        
     }
 
     public void SetTemplate(Transform template) 
