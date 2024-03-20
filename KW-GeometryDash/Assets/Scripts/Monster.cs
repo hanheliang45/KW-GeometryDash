@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
@@ -9,11 +10,12 @@ public class Monster : MonoBehaviour
     [SerializeField] private Transform template_FireBall;
     private Animator animator;
     private float stopWatch;
-
+    List<Monster> childList;
     private void Awake()
     {
         instance = this;
-
+        childList = new List<Monster>();
+       
     }
 
     // Start is called before the first frame update
@@ -49,6 +51,15 @@ public class Monster : MonoBehaviour
         Debug.Log("Fired");
         animator.SetBool("IsThrowing", false);
         animator.SetBool("IsWalking", true);
+    }
+
+    public void Tellport() 
+    {
+        foreach (Monster child in childList) 
+        {
+            child.gameObject.SetActive(false);
+            this.transform.Find("Circle").gameObject.SetActive(true);
+        }
     }
 
 }
