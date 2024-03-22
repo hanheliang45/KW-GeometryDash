@@ -15,11 +15,13 @@ public class Chracter : MonoBehaviour
     private bool OnGround;
     private bool jumped;
     private bool controlled;
-    private bool zigzaging;
     private float ZigZagingInOnWayClock;
     private float actualSpeed;
     
-     
+    private bool zigzaging;
+    private bool zigzagingUp;
+    private bool zigzagingDown;
+
     private void Awake()
     {
         instance = this;
@@ -29,6 +31,7 @@ public class Chracter : MonoBehaviour
     {
         controlled = false;
         physicsBody = GetComponent<Rigidbody2D>();
+        zigzagingDown = false;
     }
     
     // Update is called once per frame
@@ -68,17 +71,30 @@ public class Chracter : MonoBehaviour
             controlled = false;
 
             ZigZagingInOnWayClock += Time.deltaTime;
-            if (ZigZagingInOnWayClock == 3)
+            if (ZigZagingInOnWayClock >= 3)
             {
                 Die();
             }
-
             if (Input.anyKeyDown) 
             {
-                if (physicsBody.velocity.y >= ZigZagSpeed - 0.1) 
+                if (zigzagingUp)
                 {
-                    
+                    zigzagingUp = false;
+                    zigzagingDown = true;
                 }
+                else 
+                {
+                    zigzagingDown = false;
+                    zigzagingUp = true;
+                }
+            }
+            if (zigzagingUp)
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y + ZigZagSpeed) * Time.deltaTime;
+            }
+            else 
+            {
+                transform.position = new Vector2(transform.position.x, transform.position.y - ZigZagSpeed) * Time.deltaTime;
             }
         }
         
