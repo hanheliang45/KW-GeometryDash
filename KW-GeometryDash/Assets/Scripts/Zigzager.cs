@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Zigzager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private float ZigZagSpeed;
     void Start()
     {
         
@@ -18,6 +18,6 @@ public class Zigzager : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        collision.transform.GetComponent<Chracter>().ZigZag(ZigZagSpeed);
     }
 }

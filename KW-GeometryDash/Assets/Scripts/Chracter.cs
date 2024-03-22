@@ -11,13 +11,15 @@ public class Chracter : MonoBehaviour
     [SerializeField] float jumpHeight;
     [SerializeField] private float fallSpeed;
     Rigidbody2D physicsBody;
+    private float ZigZagSpeed;
     private bool OnGround;
     private bool jumped;
     private bool controlled;
     private bool zigzaging;
+    private float ZigZagingInOnWayClock;
     private float actualSpeed;
     
-    
+     
     private void Awake()
     {
         instance = this;
@@ -35,6 +37,7 @@ public class Chracter : MonoBehaviour
         //Controlled //Controlled //Controlled //Controlled
         if (controlled)
         {
+            zigzaging = false;
             
             if (Input.GetKey(KeyCode.A))
             {
@@ -57,7 +60,27 @@ public class Chracter : MonoBehaviour
             }
             return;    
         }
-        
+
+        //ZigZag //ZigZag //ZigZag //ZigZag //ZigZag 
+
+        if (zigzaging)
+        {
+            controlled = false;
+
+            ZigZagingInOnWayClock += Time.deltaTime;
+            if (ZigZagingInOnWayClock == 3)
+            {
+                Die();
+            }
+
+            if (Input.anyKeyDown) 
+            {
+                if (physicsBody.velocity.y >= ZigZagSpeed - 0.1) 
+                {
+                    
+                }
+            }
+        }
         
         //Moving //Moving //Moving //Moving 
         if (Input.GetMouseButtonDown(0))
@@ -121,8 +144,17 @@ public class Chracter : MonoBehaviour
 
         controlled = true;
     }
-    
-    
+
+    public void ZigZag(float ZigZagSpeed) 
+    {
+        if (zigzaging) 
+        {
+            zigzaging = false;
+            return;
+        }
+        zigzaging = true;
+        this.ZigZagSpeed = ZigZagSpeed;
+    }
     
     
     
