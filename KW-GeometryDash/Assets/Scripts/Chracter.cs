@@ -14,7 +14,7 @@ public class Chracter : MonoBehaviour
     private bool OnGround;
     private bool jumped;
     private bool controlled;
-    private 
+    private bool zigzaging;
     private float actualSpeed;
     
     
@@ -49,7 +49,7 @@ public class Chracter : MonoBehaviour
                 return;
             }
             
-            if (OnGround && Input.GetKeyDown(KeyCode.Space))
+            if (OnGround && Input.GetMouseButtonDown(0))
             {
                 physicsBody.velocity = new Vector2(physicsBody.velocity.x,jumpHeight);
                 OnGround = false;
@@ -60,7 +60,7 @@ public class Chracter : MonoBehaviour
         
         
         //Moving //Moving //Moving //Moving 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             if (OnGround)
             {
