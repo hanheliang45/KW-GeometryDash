@@ -58,8 +58,8 @@ public class Monster : MonoBehaviour
         foreach (Monster child in childList) 
         {
             child.gameObject.SetActive(false);
-            this.transform.Find("Circle").gameObject.SetActive(true);
         }
+        this.transform.Find("Circle").gameObject.SetActive(true);
     }
 
 }
