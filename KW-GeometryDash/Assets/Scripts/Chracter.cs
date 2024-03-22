@@ -14,6 +14,7 @@ public class Chracter : MonoBehaviour
     private bool OnGround;
     private bool jumped;
     private bool controlled;
+    private 
     private float actualSpeed;
     
     
